@@ -1,0 +1,22 @@
+name: 'Github Action for download'
+description: 'Github Action for download'
+author: 'iamazy <iamazy.me@outlook.com>'
+branding:
+  icon: 'cloud'
+  color: 'blue'
+inputs:
+  url:
+    description: 'url'
+    required: true
+  actor:
+    description: 'github user'
+    required: true
+  email:
+    description: 'github email'
+    required: true
+  repo:
+    description: 'github repo'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
