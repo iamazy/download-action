@@ -35,7 +35,7 @@ FROM ghcr.io/iamazy/download-action:sha256-a045858f37423c4bebbec522e009935eac442
 # # torrent download 'magnet:?xt=urn:btih:KRWPCX3SJUM4IMM4YF5RPHL6ANPYTQPU'
 # RUN go install github.com/anacrolix/torrent/cmd/...@latest
 
-# ADD *.sh /
+ADD *.sh /
 
-# RUN chmod +x /entrypoint.sh
-# ENTRYPOINT ["/entrypoint.sh"]
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
