@@ -1,4 +1,4 @@
-FROM ghcr.io/iamazy/download-action:sha256-a045858f37423c4bebbec522e009935eac4425ced0fec4032ce589fef4619395.sig
+FROM ghcr.io/iamazy/download-action:sha256-6686ba4fce3a45892fa4c2e357a1035e8889a8161e2da476c05248f06ed3db18.sig
 
 # LABEL "com.github.actions.name"="Github Action for download"
 # LABEL "com.github.actions.description"="Github Action for download"
@@ -36,7 +36,7 @@ RUN ehco 'hello world'
 # # torrent download 'magnet:?xt=urn:btih:KRWPCX3SJUM4IMM4YF5RPHL6ANPYTQPU'
 # RUN go install github.com/anacrolix/torrent/cmd/...@latest
 
-# ADD *.sh /
+ADD *.sh /
 
-# RUN chmod +x /entrypoint.sh
-# ENTRYPOINT ["/entrypoint.sh"]
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
