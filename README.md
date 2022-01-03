@@ -1,6 +1,6 @@
 ## Download Action
 
-Use Github Action to download the file (compress in volumes over 100M), and upload them to the corresponding Github repository, support`Http`,`Https`,`Ftp`,`Ftps`,`BitTorrent`protocols.
+Use Github Action to download the file (compressed in volumes over 100M), and upload them to the corresponding Github repository, support`Http`,`Https`,`Ftp`,`Ftps`,`BitTorrent`protocols.
 
 ### Usage
 
