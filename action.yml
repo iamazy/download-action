@@ -17,6 +17,9 @@ inputs:
   repo:
     description: 'github repo'
     required: true
+  useGitLfs:
+    description: 'place to store the file, default is to compressed in volumns over 100M'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

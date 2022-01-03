@@ -28,7 +28,6 @@ git pull --rebase
 
 target='target'
 urls=(${INPUT_URL})
-# paths=()
 
 if [ ! -d ${target} ];then
   mkdir ${target}
@@ -50,13 +49,15 @@ do
         size=`ls -l ${filename} | awk '{print $5}'`
         echo 'filename: '${filename}' size: '${size}
         if [ ${size} -gt 104857600 ]; then
-            # zip -r ${filename}.zip ${filename}
-            # zip -s 100m ${filename}.zip --out output.zip
-            # rm ${filename}*
+          if [ -z "${INPUT_USEGITLFS}" ]; then
+            zip -r ${filename}.zip ${filename}
+            zip -s 100m ${filename}.zip --out output-${filename}.zip
+            rm ${filename}*
+          else
             git lfs track ${filename}
+          fi
         fi
         rm log
-        # paths[i]=${target}/${start}/*
         i=$(($i+1))
         start=$(($start+1))
     elif [[ ${each} == magnet* ]]; then
@@ -66,13 +67,15 @@ do
         do
             size=`ls -l ${item} | awk '{print $5}'`
             if [ $size -gt 104857600 ]; then
-                # zip -r ${item}.zip ${item}
-                # zip -s 100m ${item}.zip --out output-${item}.zip
-                # rm ${item}*
+              if [ -z "${INPUT_USEGITLFS}" ]; then
+                zip -r ${item}.zip ${item}
+                zip -s 100m ${item}.zip --out output-${item}.zip
+                rm ${item}*
+              else
                 git lfs track ${item}
+              fi
             fi
         done
-        # paths[i]=${target}/${start}/*
         i=$(($i+1))
         start=$(($start+1))
     else 
@@ -82,13 +85,6 @@ do
 done
 
 cd ..
-
-# i=0
-# for each in ${paths[@]}; do
-#     git add ${each}
-#     git commit -m "${urls[i]}"
-#     i=$(($i+1))
-# done
 
 git add .
 git commit -m "upload"
