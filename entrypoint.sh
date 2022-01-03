@@ -18,6 +18,9 @@ if [ -z "${INPUT_REPO}" ]; then
 fi
 
 # git
+git config --global http.postBuffer 524288000
+git config --global http.maxRequestBuffer 200M
+git config --global http.core.compression 0
 git config --global user.name 'download-action[bot]'
 git config --global user.email 'download-action-bot@example.com'
 git remote set-url origin https://${INPUT_ACTOR}:${GITHUB_TOKEN}@github.com/${INPUT_REPO}.git
