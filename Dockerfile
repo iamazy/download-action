@@ -10,7 +10,7 @@ FROM ghcr.io/iamazy/download-action:sha256-a045858f37423c4bebbec522e009935eac442
 # LABEL "maintainer"="iamazy <iamazy.me@outlook.com>"
 
 # ARG GO_PKG=go.tar.gz
-# ARG WORKSPACE=/home/download/
+ARG WORKSPACE=/home/download/
 
 # RUN  apt-get update \
 #   && apt-get install -y git \
@@ -25,7 +25,8 @@ FROM ghcr.io/iamazy/download-action:sha256-a045858f37423c4bebbec522e009935eac442
 # ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # RUN rm -rf ${GO_PKG}
 # RUN mkdir -p ${WORKSPACE}
-# WORKDIR ${WORKSPACE}
+WORKDIR ${WORKSPACE}
+RUN ehco 'hello world'
 
 # # alpine image has no /lib64/ld-linux-x86-64.so.2
 # # RUN mkdir /lib64
@@ -35,7 +36,7 @@ FROM ghcr.io/iamazy/download-action:sha256-a045858f37423c4bebbec522e009935eac442
 # # torrent download 'magnet:?xt=urn:btih:KRWPCX3SJUM4IMM4YF5RPHL6ANPYTQPU'
 # RUN go install github.com/anacrolix/torrent/cmd/...@latest
 
-ADD *.sh /
+# ADD *.sh /
 
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+# RUN chmod +x /entrypoint.sh
+# ENTRYPOINT ["/entrypoint.sh"]
