@@ -50,9 +50,10 @@ do
         size=`ls -l ${filename} | awk '{print $5}'`
         echo 'filename: '${filename}' size: '${size}
         if [ ${size} -gt 104857600 ]; then
-            zip -r ${filename}.zip ${filename}
-            zip -s 100m ${filename}.zip --out output.zip
-            rm ${filename}*
+            # zip -r ${filename}.zip ${filename}
+            # zip -s 100m ${filename}.zip --out output.zip
+            # rm ${filename}*
+            git lfs track ${filename}
         fi
         rm log
         # paths[i]=${target}/${start}/*
@@ -65,9 +66,10 @@ do
         do
             size=`ls -l ${item} | awk '{print $5}'`
             if [ $size -gt 104857600 ]; then
-                zip -r ${item}.zip ${item}
-                zip -s 100m ${item}.zip --out output-${item}.zip
-                rm ${item}*
+                # zip -r ${item}.zip ${item}
+                # zip -s 100m ${item}.zip --out output-${item}.zip
+                # rm ${item}*
+                git lfs track ${item}
             fi
         done
         # paths[i]=${target}/${start}/*

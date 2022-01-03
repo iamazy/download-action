@@ -18,6 +18,7 @@ RUN  apt-get update \
   && apt-get install -y wget \
   && apt-get install -y build-essential \
   && rm -rf /var/lib/apt/lists/*
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
 RUN wget 'https://golang.google.cn/dl/go1.17.5.linux-amd64.tar.gz' -O ${GO_PKG}
 RUN tar -C /usr/local/ -zxf ${GO_PKG}
 ENV GOROOT=/usr/local/go
