@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM golang:bullseye
 
 LABEL "com.github.actions.name"="Github Action for download"
 LABEL "com.github.actions.description"="Github Action for download"
@@ -9,7 +9,7 @@ LABEL "repository"="http://github.com/iamazy/download-action"
 LABEL "homepage"="http://github.com/iamazy/download-action"
 LABEL "maintainer"="iamazy <iamazy.me@outlook.com>"
 
-ARG GO_PKG=go.tar.gz
+# ARG GO_PKG=go.tar.gz
 ARG WORKSPACE=/home/download/
 
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
@@ -22,12 +22,12 @@ RUN  apt-get update \
   && apt-get install -y build-essential \
   && rm -rf /var/lib/apt/lists/*
 RUN git lfs install
-RUN wget 'https://golang.google.cn/dl/go1.17.5.linux-amd64.tar.gz' -O ${GO_PKG}
-RUN tar -C /usr/local/ -zxf ${GO_PKG}
-ENV GOROOT=/usr/local/go
-ENV GOPATH=/home/go
-ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-RUN rm -rf ${GO_PKG}
+# RUN wget 'https://golang.google.cn/dl/go1.17.5.linux-amd64.tar.gz' -O ${GO_PKG}
+# RUN tar -C /usr/local/ -zxf ${GO_PKG}
+# ENV GOROOT=/usr/local/go
+# ENV GOPATH=/home/go
+# ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# RUN rm -rf ${GO_PKG}
 RUN go install github.com/anacrolix/torrent/cmd/...@latest
 RUN mkdir -p ${WORKSPACE}
 WORKDIR ${WORKSPACE}
