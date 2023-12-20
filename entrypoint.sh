@@ -16,7 +16,7 @@ if [ -z "${INPUT_REPO}" ]; then
   echo 'required repo parameter'
   exit 1
 fi
-
+git config --global --add safe.directory $PWD
 # git
 git config --global http.postBuffer 524288000
 git config --global http.maxRequestBuffer 200M
